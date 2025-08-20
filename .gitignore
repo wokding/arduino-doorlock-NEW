@@ -1,0 +1,17 @@
+# OS / editor
+*.swp
+*.tmp
+*.bak
+*.DS_Store
+.vscode/
+.idea/
+*.log
+
+# Arduino build
+*.hex
+*.elf
+*.eep
+
+# PlatformIO (optional)
+.pio/
+.ccls-cache/
