@@ -1,7 +1,6 @@
 # Flowchart Detail Sistem Door Lock
 
 ## 1. Main Loop
-
 ```mermaid
 flowchart TD
   A[Start] --> B[setup()]
@@ -13,7 +12,12 @@ flowchart TD
   E -->|‘#’| M[Admin Mode]
   U --> C
   M --> C
+```
 
+---
+
+## 2. User Mode
+```mermaid
 flowchart TD
   U1[User Mode] --> U2[animateLoadingBar("MENU USER")]
   U2 --> U3[askUserPIN()]
@@ -24,7 +28,12 @@ flowchart TD
   U3 -->|invalid| U8[logEvent("PIN_ERR")]
   U8 --> U9[beep(600,300) & animasiAksesDitolak()]
   U9 --> U7
+```
 
+---
+
+## 3. Admin Mode
+```mermaid
 flowchart TD
   A1[Admin Mode] --> A2[animateLoadingBar("MENU ADMIN")]
   A2 --> A3[askPIN(adminPIN)]
@@ -45,7 +54,12 @@ flowchart TD
     A11 --> A5
     A12 --> A7
   end
+```
 
+---
+
+## 4. Admin → User Management
+```mermaid
 flowchart TB
   UM1[Admin → A] --> UM2[Display header & row1]
   UM2 --> UM3[Init timers: swap=5s, timeout=15s]
@@ -56,11 +70,16 @@ flowchart TB
   UM6 -->|no| UM8[getKeyWithBeep()]
   UM7 --> UM8
   UM8 -->|none| UM3
-  UM8 -->|A| UM9[viewUsersAutoScroll()] --> UM2(reset timers)
+  UM8 -->|A| UM9[viewUsersAutoScroll()] --> UM2
   UM8 -->|B| UM10[addNewUser()] --> UM2
   UM8 -->|C| UM11[deleteUserMenu()] --> UM2
   UM8 -->|*| UM12[exit to Admin Loop]
+```
 
+---
+
+## 5. View Users Auto Scroll
+```mermaid
 flowchart TD
   V1[viewUsersAutoScroll()] --> V2{userCount == 0?}
   V2 -->|yes| V3[Show "BELUM ADA"] --> V4[Return]
@@ -76,7 +95,12 @@ flowchart TD
   V11 --> V12[getKeyWithBeep()]
   V12 -->|‘*’| V4
   V12 -->|none| V6
+```
 
+---
+
+## 6. Delete User Menu
+```mermaid
 flowchart TB
   D1[deleteUserMenu()] --> D2{userCount==0?}
   D2 -->|yes| D3[Show "UNTUK DIHAPUS"] --> D4[Return]
@@ -90,6 +114,7 @@ flowchart TB
   D9 -->|B| D11[sel=(sel+1)%N; needRedraw=true]
   D9 -->|#| D12[Confirm modal]
   D9 -->|*| D20[Notify “KEMBALI” → return]
+
   subgraph CONFIRM
     D12 --> D13[getKeyWithBeep()]
     D13 -->|*| D14[Notify “BATAL HAPUS”; needRedraw=true] --> D8
@@ -100,15 +125,25 @@ flowchart TB
     D18 -->|yes| D10
     D18 -->|no| D4
   end
+```
 
+---
+
+## 7. Change Admin PIN
+```mermaid
 flowchart TD
   P1[changeAdminPIN()] --> P2[askNewPIN(tmp)]
   P2 -->|ok| P3[saveAdminPIN(); logEvent("ADM PIN"); Notify success] --> P4[return]
   P2 -->|fail| P5[Notify fail] --> P4
+```
 
+---
+
+## 8. Clear Logs
+```mermaid
 flowchart TD
   C1[clearLogs()] --> C2[Show "*=NO  #=YES"]
   C2 --> C3[getKeyWithBeep()]
   C3 -->|#| C4[Erase EEPROM log; Notify success] --> C5[return]
   C3 -->|*| C6[Notify cancel] --> C5
-  
+```
