@@ -103,7 +103,7 @@ Menggunakan library bawaan:
 
 ---
 
-## Konfigurasi Cepat
+## ⚙️ Konfigurasi Cepat
 - Alamat LCD: konstruktor `LiquidCrystal_I2C(0x27, 16, 2)` — ubah jika berbeda.
 - Posisi servo: `POS_CLOSED` dan `POS_OPEN`.
 - Timeout & interval UI:
