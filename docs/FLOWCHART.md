@@ -12,7 +12,7 @@ flowchart TD
   E -->|"#"| M["Admin Mode"]
   U --> C
   M --> C
-
+```
 
 ---
 
@@ -28,7 +28,7 @@ flowchart TD
   U3 -->|"invalid"| U8["logEvent('PIN_ERR')"]
   U8 --> U9["beep(600,300) & animasiAksesDitolak()"]
   U9 --> U7
-
+```
 
 ---
 
@@ -54,7 +54,7 @@ flowchart TD
     A11 --> A5
     A12 --> A7
   end
-
+```
 
 ---
 
@@ -74,7 +74,7 @@ flowchart TB
   UM8 -->|"B"| UM10["addNewUser()"] --> UM2
   UM8 -->|"C"| UM11["deleteUserMenu()"] --> UM2
   UM8 -->|"*"| UM12["exit to Admin Loop"]
-
+```
 
 ---
 
@@ -95,7 +95,7 @@ flowchart TD
   V11 --> V12["getKeyWithBeep()"]
   V12 -->|"*"| V4
   V12 -->|"none"| V6
-
+```
 
 ---
 
@@ -125,7 +125,7 @@ flowchart TB
     D18 -->|"yes"| D10
     D18 -->|"no"| D4
   end
-
+```
 
 ---
 
@@ -135,7 +135,7 @@ flowchart TD
   P1["changeAdminPIN()"] --> P2["askNewPIN(tmp)"]
   P2 -->|"ok"| P3["saveAdminPIN(); logEvent('ADM PIN'); Notify success"] --> P4["return"]
   P2 -->|"fail"| P5["Notify fail"] --> P4
-
+```
 
 ---
 
@@ -146,4 +146,4 @@ flowchart TD
   C2 --> C3["getKeyWithBeep()"]
   C3 -->|"#"| C4["Erase EEPROM log; Notify success"] --> C5["return"]
   C3 -->|"*"| C6["Notify cancel"] --> C5
-
+```
