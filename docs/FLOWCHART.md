@@ -8,8 +8,8 @@ flowchart TD
   C --> D[showMainMenuRealtime()]
   D --> E[getKeyWithBeep()]
   E -->|no key| C
-  E -->|'*'| U[User Mode]
-  E -->|'#'| M[Admin Mode]
+  E -->|\*| U[User Mode]
+  E -->|\#| M[Admin Mode]
   U --> C
   M --> C
 ```
@@ -47,7 +47,7 @@ flowchart TD
     A8 -->|B| A10[viewLogs()]
     A8 -->|C| A11[changeAdminPIN()]
     A8 -->|D| A12[clearLogs()]
-    A8 -->|'*', '#'| A5
+    A8 -->|\*,\#| A5
 
     A9 --> A7
     A10 --> A7
@@ -64,7 +64,7 @@ flowchart TB
   UM1[Admin → A] --> UM2[Display header & row1]
   UM2 --> UM3[Init timers: swap=5s, timeout=15s]
   UM3 --> UM4{idle ≥ 15s?}
-  UM4 -->|yes| UM5[animasiTimeoutAdmin() → set umTimeoutToMain → exit]
+  UM4 -->|yes| UM5[animasiTimeoutAdmin() → exit]
   UM4 -->|no| UM6{swap ≥ 5s?}
   UM6 -->|yes| UM7[toggle row1 instruksi]
   UM6 -->|no| UM8[getKeyWithBeep()]
@@ -73,7 +73,7 @@ flowchart TB
   UM8 -->|A| UM9[viewUsersAutoScroll()] --> UM2
   UM8 -->|B| UM10[addNewUser()] --> UM2
   UM8 -->|C| UM11[deleteUserMenu()] --> UM2
-  UM8 -->|'*'| UM12[exit to Admin Loop]
+  UM8 -->|\*| UM12[exit to Admin Loop]
 ```
 
 ---
@@ -93,7 +93,7 @@ flowchart TD
   V9 -->|no| V11
   V10 --> V11
   V11 --> V12[getKeyWithBeep()]
-  V12 -->|'*'| V4
+  V12 -->|\*| V4
   V12 -->|none| V6
 ```
 
@@ -112,13 +112,13 @@ flowchart TB
   D8 --> D9[getKeyWithBeep()]
   D9 -->|A| D10[sel=(sel-1)%N; needRedraw=true]
   D9 -->|B| D11[sel=(sel+1)%N; needRedraw=true]
-  D9 -->|'#'| D12[Confirm modal]
-  D9 -->|'*'| D20[Notify "KEMBALI" → return]
+  D9 -->|\#| D12[Confirm modal]
+  D9 -->|\*| D20[Notify "KEMBALI" → return]
 
   subgraph CONFIRM
     D12 --> D13[getKeyWithBeep()]
-    D13 -->|'*'| D14[Notify "BATAL HAPUS"; needRedraw=true] --> D8
-    D13 -->|'#'| D15[Shift users[], userCount–]
+    D13 -->|\*| D14[Notify "BATAL HAPUS"; needRedraw=true] --> D8
+    D13 -->|\#| D15[Shift users[], userCount–]
     D15 --> D16[rewriteEEPROM(); logEvent("DEL")]
     D16 --> D17[Notify "USER DIHAPUS"]
     D17 --> D18{userCount>0?}
@@ -142,8 +142,8 @@ flowchart TD
 ## 8. Clear Logs
 ```mermaid
 flowchart TD
-  C1[clearLogs()] --> C2[Show "*=NO  #=YES"]
+  C1[clearLogs()] --> C2[Show "\*=NO  \#=YES"]
   C2 --> C3[getKeyWithBeep()]
-  C3 -->|'#'| C4[Erase EEPROM log; Notify success] --> C5[return]
-  C3 -->|'*'| C6[Notify cancel] --> C5
+  C3 -->|\#| C4[Erase EEPROM log; Notify success] --> C5[return]
+  C3 -->|\*| C6[Notify cancel] --> C5
 ```
