@@ -54,12 +54,14 @@ Ringkasan pin default:
 - Relay control: A1 (aktif LOW)
 - LCD I2C: 0x27 (SDA/SCL mengikuti board, Uno: A4/A5)
 - RTC DS3231: I2C (SDA/SCL sama dengan LCD)
+
 ![Hero](assets/hero.png)
 
 ---
 
 ## 📐 Wiring Diagram
-Detail wiring: lihat docs/WIRING.md  
+Detail wiring: lihat docs/WIRING.md 
+
 ![Wiring](assets/wiring.png)
 
 ---
